@@ -11,7 +11,7 @@ import axios from "axios";
 
 export const speciesKoiApi = {
   getSpeciesKoiList: async (
-    options?: SpeciesKoisParams
+    options?: SpeciesKoisParams,
   ): Promise<RootResponse<Data<SpeciesKoisResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/kois", {
@@ -27,7 +27,7 @@ export const speciesKoiApi = {
   },
 
   getSpeciesKoiDetail: async (
-    id: string
+    id: string,
   ): Promise<RootResponse<SpeciesKoiDetailResponse> | undefined> => {
     try {
       const response = await axiosInstance.get(`/api/kois/${id}`);
@@ -40,7 +40,7 @@ export const speciesKoiApi = {
   },
 
   createSpeciesKoi: async (
-    data: SpeciesKoisBody
+    data: SpeciesKoisBody,
   ): Promise<RootResponse<SpeciesKoisEditResponse> | undefined> => {
     try {
       const response = await axiosInstance.post("/api/kois", data);
@@ -54,7 +54,7 @@ export const speciesKoiApi = {
 
   updateSpeciesKoi: async (
     id: string,
-    data: SpeciesKoisBody
+    data: SpeciesKoisBody,
   ): Promise<RootResponse<SpeciesKoisEditResponse> | undefined> => {
     try {
       const response = await axiosInstance.put(`/api/kois/${id}`, data);
@@ -67,7 +67,7 @@ export const speciesKoiApi = {
   },
 
   deleteSpeciesKoi: async (
-    id: string
+    id: string,
   ): Promise<RootResponse<null> | undefined> => {
     try {
       const response = await axiosInstance.delete(`/api/kois/${id}`);

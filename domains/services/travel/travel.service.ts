@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const travelApi = {
   getListTravels: async (
-    options?: TravelsParamsRequest
+    options?: TravelsParamsRequest,
   ): Promise<RootResponse<Data<TravelsResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/travels", {

@@ -1,5 +1,5 @@
 export interface FeedbacksBodyRequest {
-    farmId: string,
-    rating: number,
-    content: string
+  farmId: string;
+  rating: number;
+  content: string;
 }

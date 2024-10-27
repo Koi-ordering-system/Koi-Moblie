@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/configs";
+import { axiosInstance } from "@/configs/axios-instance";
 import { Data, RootResponse } from "@/domains/models/root/root.response";
 import {
   SpeciesKoiDetailResponse,

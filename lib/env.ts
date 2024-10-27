@@ -6,7 +6,7 @@ const envSchema = z.object({
 });
 
 export const env = envSchema.parse({
-  EXPO_API_URL_BE: process.env.EXPO_API_URL_BE,
+  EXPO_API_URL_BE: process.env.EXPO_PUBLIC_API_URL_BE,
   EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY:
     process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY,
 });

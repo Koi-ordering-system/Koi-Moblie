@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/configs";
+import { axiosInstance } from "@/configs/axios-instance";
 import { OrderParams } from "@/domains/models/orders/orders-params.request";
 
 export const orderApi = {

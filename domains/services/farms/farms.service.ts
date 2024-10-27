@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/configs";
+import { axiosInstance } from "@/configs/axios-instance";
 import { FarmsBody, FarmsParams, FarmsResponse } from "@/domains/models/farms";
 import { FarmDetailResponse } from "@/domains/models/farms/farm-detail.response";
 import { Data, RootResponse } from "@/domains/models/root/root.response";

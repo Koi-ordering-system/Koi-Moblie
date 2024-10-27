@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/configs";
+import { axiosInstance } from "@/configs/axios-instance";
 import {
   FeedbacksBodyRequest,
   FeedbacksParamsRequest,

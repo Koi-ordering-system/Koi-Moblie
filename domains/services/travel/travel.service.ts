@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/configs";
+import { axiosInstance } from "@/configs/axios-instance";
 import { Data, RootResponse } from "@/domains/models/root/root.response";
 import { TravelsParamsRequest } from "@/domains/models/travels/travels-params.resquest";
 import { TravelsResponse } from "@/domains/models/travels/travels.response";

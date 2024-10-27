@@ -59,6 +59,12 @@ export default function RootLayout() {
                 title: "Oops!",
               }}
             />
+            <Stack.Screen
+              name="farm/[farmId]"
+              options={{
+                title: "Farm Detail",
+              }}
+            />
           </Stack>
         </ThemeProvider>
       </ClerkLoaded>

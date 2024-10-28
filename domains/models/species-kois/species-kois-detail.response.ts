@@ -4,7 +4,7 @@ export interface SpeciesKoiDetailResponse {
   minSize: number;
   maxSize: number;
   price: number;
-  colors: string[];
+  colors: Color[];
   farms: Farm[];
   imageUrls: string[];
 }
@@ -12,5 +12,10 @@ export interface SpeciesKoiDetailResponse {
 export interface Farm {
   farmKoiId: string;
   farmId: string;
+  name: string;
+}
+
+export interface Color {
+  id: string;
   name: string;
 }

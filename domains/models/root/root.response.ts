@@ -1,7 +1,7 @@
 export interface RootResponse<T> {
   succeeded: boolean;
   message: null;
-  data: T;
+  data: T | null;
 }
 
 export interface Data<T> {

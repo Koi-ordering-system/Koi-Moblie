@@ -84,7 +84,7 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="(travel)/index"
+        name="travel"
         options={{
           headerShown: true,
           tabBarIcon: ({ color, focused }) => (

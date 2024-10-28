@@ -10,9 +10,8 @@ export const speciesKoiSchema = z.object({
   price: z.number().min(0, "Price must be positive"),
   koiImages: z
     .array(z.string().url("Must be a valid URL"))
-    .min(1, "At least one image is required")
     .max(MAX_IMAGES, `Maximum of ${MAX_IMAGES} images allowed`),
-  color: z.string().min(2, "Color must be at least 2 characters"),
+  colors: z.string().min(2, "Color must be at least 2 characters"),
 });
 
 export type SpeciesKoiBodySchema = z.infer<typeof speciesKoiSchema>;

@@ -1,7 +1,7 @@
 import { env } from "@/lib/env";
 import axios from "axios";
 
-export const baseURL = env.EXPO_API_URL_BE;
+export const baseURL = env.EXPO_PUBLIC_API_URL_BE;
 
 export const axiosInstance = axios.create({
   baseURL: baseURL,
@@ -9,7 +9,7 @@ export const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
   withCredentials: false,
-  timeout: 10000,
+  timeout: 3000,
 });
 
 axiosInstance.interceptors.request.use();
@@ -20,5 +20,5 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     return Promise.reject(error);
-  },
+  }
 );

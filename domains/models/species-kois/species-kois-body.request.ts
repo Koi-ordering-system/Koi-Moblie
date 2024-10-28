@@ -4,6 +4,6 @@ export interface SpeciesKoisBody {
   minSize: number;
   maxSize: number;
   price: number;
-  koiImages: string[];
-  color: string;
+  koiImages?: string[];
+  colors: string;
 }

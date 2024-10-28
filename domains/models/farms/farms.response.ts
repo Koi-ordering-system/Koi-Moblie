@@ -1,3 +1,5 @@
+import { Kois } from "@/domains/models/farms/farm-detail.response";
+
 export interface FarmsResponse {
   id: string;
   name: string;
@@ -6,6 +8,7 @@ export interface FarmsResponse {
   description: string;
   rating: number;
   farmImages: farmImages[];
+  kois: Kois[];
 }
 
 interface farmImages {

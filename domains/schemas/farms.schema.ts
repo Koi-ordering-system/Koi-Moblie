@@ -10,4 +10,16 @@ export const farmsSchema = z.object({
     .max(8, "You can upload a maximum of 8 images"),
 });
 
+const farmAddKoiBodySchema = z.object({
+  id: z.string().min(1, "Koi is required"),
+  quantity: z
+    .number()
+    .min(1, "Quantity must be at least 1")
+    .max(500, "Quantity must be at most 500"),
+});
+
+export const farmAddKoiBodyArraySchema = z.array(farmAddKoiBodySchema);
+
+export type FarmAddKoiBodySchema = z.infer<typeof farmAddKoiBodySchema>;
+
 export type FarmsBodySchema = z.infer<typeof farmsSchema>;

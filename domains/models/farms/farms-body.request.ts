@@ -5,3 +5,8 @@ export interface FarmsBody {
   description: string;
   farmImages: string[];
 }
+
+export interface FarmAddKoiBody {
+  id: string;
+  quantity: number;
+}

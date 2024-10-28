@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/configs";
+import { axiosInstance } from "@/configs/axios-instance";
 import {
   FeedbacksBodyRequest,
   FeedbacksParamsRequest,
@@ -8,7 +8,7 @@ import axios from "axios";
 
 export const apiFeedbacks = {
   createFeedback: async (
-    data: FeedbacksBodyRequest
+    data: FeedbacksBodyRequest,
   ): Promise<RootResponse<boolean> | undefined> => {
     try {
       await axiosInstance.post("/api/feedbacks", data);
@@ -19,7 +19,7 @@ export const apiFeedbacks = {
   },
 
   getFeedBacks: async (
-    options?: FeedbacksParamsRequest
+    options?: FeedbacksParamsRequest,
   ): Promise<RootResponse<Data<FeedbacksBodyRequest[]>> | undefined> => {
     try {
       const { data } = await axiosInstance.get("/api/feedbacks", {

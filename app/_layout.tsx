@@ -83,6 +83,12 @@ export default function RootLayout() {
                 }}
               />
               <Stack.Screen
+                name="farm/[farmId]"
+                options={{
+                  title: "Farm Detail",
+                }}
+              />
+              <Stack.Screen
                 name="(order)/order"
                 options={{
                   headerShown: true,

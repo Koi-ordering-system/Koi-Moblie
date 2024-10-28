@@ -41,7 +41,7 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="(hompage)/index"
         options={{
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon

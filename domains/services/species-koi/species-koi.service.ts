@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/configs";
+import { axiosInstance } from "@/configs/axios-instance";
 import { Data, RootResponse } from "@/domains/models/root/root.response";
 import {
   SpeciesKoiDetailResponse,
@@ -10,7 +10,7 @@ import axios from "axios";
 
 export const speciesKoiApi = {
   getSpeciesKoiList: async (
-    options?: SpeciesKoisParams
+    options?: SpeciesKoisParams,
   ): Promise<RootResponse<Data<SpeciesKoisResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/kois", {
@@ -26,7 +26,7 @@ export const speciesKoiApi = {
   },
 
   getSpeciesKoiDetail: async (
-    id: string
+    id: string,
   ): Promise<RootResponse<SpeciesKoiDetailResponse> | undefined> => {
     try {
       const response = await axiosInstance.get(`/api/kois/${id}`);
@@ -85,7 +85,7 @@ export const speciesKoiApi = {
   },
 
   deleteSpeciesKoi: async (
-    id: string
+    id: string,
   ): Promise<RootResponse<null> | undefined> => {
     try {
       const response = await axiosInstance.delete(`/api/kois/${id}`);

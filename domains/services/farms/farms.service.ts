@@ -14,7 +14,7 @@ import axios from "axios";
 
 export const farmApi = {
   getFarmList: async (
-    options?: FarmsParams
+    options?: FarmsParams,
   ): Promise<RootResponse<Data<FarmsResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/farms", {
@@ -48,7 +48,7 @@ export const farmApi = {
   },
 
   getFarmDetail: async (
-    id: string
+    id: string,
   ): Promise<RootResponse<FarmDetailResponse> | undefined> => {
     try {
       const response = await axiosInstance.get(`/api/farms/${id}`);

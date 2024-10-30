@@ -46,11 +46,11 @@ export default function Page() {
       style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
     >
       <SafeAreaView className="flex-1 p-4">
-        <View className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-md">
-          <Text className="text-3xl font-bold text-center text-amber-600 mb-4">
+        <View className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg bg-opacity-80">
+          <Text className="mb-4 text-3xl font-bold text-center text-amber-600">
             Welcome to PicoKoi!
           </Text>
-          <Text className="text-lg text-center text-gray-700 mb-6">
+          <Text className="mb-6 text-lg text-center text-gray-700">
             Sign in to continue exploring amazing features and benefits.
           </Text>
           <Button

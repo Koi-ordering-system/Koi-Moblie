@@ -1,5 +1,5 @@
 import useIdStore from "@/domains/stores/zustand/id/use-id-store";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Button,
   Linking,
@@ -13,9 +13,13 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { OrderTripBodyRequest } from "@/domains/models/orders/orders-body.request";
 import { orderApi } from "@/domains/services/orders/orders.service";
 import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { jwtDecode } from "jwt-decode";
+import { Token } from "@/domains/models/tokengen";
 
 const OrderPage = () => {
   const { id } = useIdStore();
+  const [userId, setUserId] = useState("");
 
   const [human, sethuman] = useState("");
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -23,10 +27,29 @@ const OrderPage = () => {
   const [showStartDatePicker, setShowStartDatePicker] = useState(false);
   const [showEndDatePicker, setShowEndDatePicker] = useState(false);
 
+  const fetchTokenUser = useCallback(async () => {
+    await AsyncStorage.getItem("token")
+      .then((response) => {
+        if (response) {
+          const user: Token = jwtDecode(response);
+          if (user) {
+            setUserId(user.id);
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to get the token from storage", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetchTokenUser();
+  }, [fetchTokenUser]);
+
   const handleDateChange = (
     event: any,
     selectedDate: Date | undefined,
-    type: "start" | "end",
+    type: "start" | "end"
   ) => {
     if (selectedDate) {
       if (type === "start") {
@@ -45,24 +68,24 @@ const OrderPage = () => {
     }
 
     const data: OrderTripBodyRequest = {
-      userId: "user_2npu2NlrLrftZaRu5OBgtv37889",
+      userId: userId,
       tripId: id,
       quantity: parseInt(human),
       startDate: startDate,
       endDate: endDate,
     };
 
-    // console.log("data", data);
-
     const response = await orderApi.postOrdersTripCreate(data);
 
-    console.log("response", response);
-
-    // if (response) {
-    //   Linking.openURL(response.payOSUrl);
-    // } else {
-    //   Alert.alert("Error", "Failed to create order");
-    // }
+    if (response?.succeeded) {
+      if (response.data?.payOSUrl) {
+        Linking.openURL(response.data.payOSUrl);
+      } else {
+        Alert.alert("Error", "Payment URL is not available");
+      }
+    } else {
+      Alert.alert("Error", "Failed to create order");
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Image,
   Text,
@@ -12,11 +12,29 @@ import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LogoutModal from "@/components/LogoutModal";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { Clerk } from "@clerk/clerk-expo";
+import { Clerk, useAuth } from "@clerk/clerk-expo";
 import Toast from "react-native-toast-message";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TabsLayout = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const auth = useAuth();
+
+  const fetchData = useCallback(async () => {
+    await auth.getToken({ template: "Koi" }).then(async (response) => {
+      try {
+        if (response) {
+          await AsyncStorage.setItem("token", response);
+        }
+      } catch (error) {
+        console.error("Failed to save the token to storage", error);
+      }
+    });
+  }, [auth]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);

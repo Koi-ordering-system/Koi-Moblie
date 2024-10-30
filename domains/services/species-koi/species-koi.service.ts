@@ -39,7 +39,7 @@ export const speciesKoiApi = {
   },
 
   createSpeciesKoi: async (
-    data: SpeciesKoisBody
+    data: SpeciesKoisBody,
   ): Promise<boolean | undefined> => {
     try {
       const formData = new FormData();
@@ -70,7 +70,7 @@ export const speciesKoiApi = {
 
   updateSpeciesKoi: async (
     koiId: string,
-    data: SpeciesKoisBody
+    data: SpeciesKoisBody,
   ): Promise<boolean | undefined> => {
     try {
       const response = await axiosInstance.put(`/api/kois/${koiId}`, data);

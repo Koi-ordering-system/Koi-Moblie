@@ -12,7 +12,7 @@ import axios from "axios";
 
 export const orderApi = {
   getOrderDelivery: async (
-    options: RootRequest
+    options: RootRequest,
   ): Promise<RootResponse<Data<OrdersUnApprovedResponse>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/orders/delivered", {
@@ -28,7 +28,7 @@ export const orderApi = {
   },
 
   getOrderUnApproved: async (
-    options: OrderParams
+    options: OrderParams,
   ): Promise<RootResponse<Data<OrdersUnApprovedResponse>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/orders/unapproved", {
@@ -44,7 +44,7 @@ export const orderApi = {
   },
 
   getOrdersPersonal: async (
-    options: RootRequest
+    options: RootRequest,
   ): Promise<RootResponse<Data<OrdersUnApprovedResponse>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/orders/personal", {
@@ -60,7 +60,7 @@ export const orderApi = {
   },
 
   getOrdersService: async (
-    options: RootRequest
+    options: RootRequest,
   ): Promise<RootResponse<Data<OrdersUnApprovedResponse>> | undefined> => {
     try {
       const response = await axiosInstance.get("/api/orders/service", {
@@ -76,7 +76,7 @@ export const orderApi = {
   },
 
   postOrdersKoi: async (
-    data: OrdersBodyRequest
+    data: OrdersBodyRequest,
   ): Promise<boolean | undefined> => {
     try {
       const response = await axiosInstance.post("/api/orders/koi", data);
@@ -92,12 +92,12 @@ export const orderApi = {
   },
 
   postOrdersTripCreate: async (
-    data: OrderTripBodyRequest
+    data: OrderTripBodyRequest,
   ): Promise<{ payOSUrl: string } | undefined> => {
     try {
       const response = await axiosInstance.post(
         "/api/orders/trip/create",
-        data
+        data,
       );
 
       return response.data?.payOSUrl;
@@ -109,7 +109,7 @@ export const orderApi = {
   },
 
   postOrdersTrip: async (
-    data: OrdersBodyRequest
+    data: OrdersBodyRequest,
   ): Promise<boolean | undefined> => {
     try {
       const response = await axiosInstance.post("/api/orders/trip", data);
@@ -154,7 +154,7 @@ export const orderApi = {
 
   patchOrdersState: async (
     id: string,
-    status: OrderStatus
+    status: OrderStatus,
   ): Promise<boolean | undefined> => {
     try {
       const response = await axiosInstance.patch(`/api/orders/${id}/status`, {

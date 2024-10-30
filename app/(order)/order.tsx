@@ -26,7 +26,7 @@ const OrderPage = () => {
   const handleDateChange = (
     event: any,
     selectedDate: Date | undefined,
-    type: "start" | "end"
+    type: "start" | "end",
   ) => {
     if (selectedDate) {
       if (type === "start") {

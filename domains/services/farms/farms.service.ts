@@ -30,14 +30,14 @@ export const farmApi = {
   },
 
   getFaramsFeedback: async (
-    options: FarmsFeedbackParams
+    options: FarmsFeedbackParams,
   ): Promise<RootResponse<Data<FarmsResponse[]>> | undefined> => {
     try {
       const response = await axiosInstance.get(
         `/api/farms/${options.orderId}/feedbacks`,
         {
           params: options,
-        }
+        },
       );
       return response.data;
     } catch (error) {
@@ -63,7 +63,7 @@ export const farmApi = {
   },
 
   createFarm: async (
-    data: FarmsBody
+    data: FarmsBody,
   ): Promise<RootResponse<FarmEditResponse> | undefined> => {
     try {
       const formData = new FormData();
@@ -89,7 +89,7 @@ export const farmApi = {
 
   updateFarm: async (
     id: string,
-    data: FarmsBody
+    data: FarmsBody,
   ): Promise<RootResponse<FarmEditResponse> | undefined> => {
     try {
       const formData = new FormData();
@@ -128,7 +128,7 @@ export const farmApi = {
 
   pacthAddKoiFarm: async (
     data: FarmAddKoiBody[],
-    id: string
+    id: string,
   ): Promise<boolean | undefined> => {
     try {
       const response = await axiosInstance.patch(`/api/farms/${id}/kois`, data);

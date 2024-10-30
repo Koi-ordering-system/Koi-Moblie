@@ -24,7 +24,7 @@ export const travelApi = {
   },
 
   getTravel: async (
-    id: string
+    id: string,
   ): Promise<RootResponse<TravelDetailResponse> | undefined> => {
     try {
       const response = await axiosInstance.get(`/api/trips/${id}`);
@@ -38,7 +38,7 @@ export const travelApi = {
   },
 
   createTravel: async (
-    data: TravelsBodyRequest
+    data: TravelsBodyRequest,
   ): Promise<boolean | undefined> => {
     try {
       const response = await axiosInstance.post("/api/trips", data);
@@ -55,7 +55,7 @@ export const travelApi = {
 
   updateTravel: async (
     id: string,
-    data: TravelsBodyRequest
+    data: TravelsBodyRequest,
   ): Promise<RootResponse<null> | undefined> => {
     try {
       const response = await axiosInstance.put(`/api/trips/${id}`, data);

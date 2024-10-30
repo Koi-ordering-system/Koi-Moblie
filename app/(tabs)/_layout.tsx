@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   Text,
@@ -10,8 +10,27 @@ import {
 import { Colors } from "@/constants/Colors";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { SafeAreaView } from "react-native-safe-area-context";
+import LogoutModal from "@/components/LogoutModal";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { Clerk } from "@clerk/clerk-expo";
+import Toast from "react-native-toast-message";
 
 const TabsLayout = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const handleLogout = async () => {
+    setModalVisible(!isModalVisible);
+    Clerk.signOut();
+    Toast.show({
+      text1: "Logout successfully",
+      type: "success",
+    });
+  };
+
   const colorScheme = useColorScheme();
 
   return (
@@ -68,18 +87,34 @@ const TabsLayout = () => {
             );
           },
           header: () => (
-            <SafeAreaView>
-              <View className="flex-row items-center justify-between p-4 bg-white">
-                <TouchableOpacity>
-                  <TabBarIcon
-                    name="menu"
-                    color={Colors[colorScheme ?? "light"].tint}
-                  />
-                </TouchableOpacity>
-                <Text className="mr-5 text-lg font-bold">Home</Text>
-                <Text> </Text>
-              </View>
-            </SafeAreaView>
+            <>
+              <SafeAreaView>
+                <View className="flex-row items-center justify-between p-4 bg-white">
+                  <TouchableOpacity>
+                    <TabBarIcon
+                      name="menu"
+                      color={Colors[colorScheme ?? "light"].tint}
+                    />
+                  </TouchableOpacity>
+                  <Text className="mr-5 text-lg font-bold">Home</Text>
+                  <TouchableOpacity onPress={toggleModal}>
+                    <View className="flex-row items-center">
+                      <Text className="pr-1">Logout</Text>
+                      <MaterialCommunityIcons
+                        name="logout"
+                        size={24}
+                        color="black"
+                      />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </SafeAreaView>
+              <LogoutModal
+                isVisible={isModalVisible}
+                onLogout={handleLogout}
+                onCancel={toggleModal}
+              />
+            </>
           ),
         }}
       />
@@ -107,18 +142,34 @@ const TabsLayout = () => {
             );
           },
           header: () => (
-            <SafeAreaView>
-              <View className="flex-row items-center justify-between p-4 bg-white">
-                <TouchableOpacity>
-                  <TabBarIcon
-                    name="menu"
-                    color={Colors[colorScheme ?? "light"].tint}
-                  />
-                </TouchableOpacity>
-                <Text className="mr-5 text-lg font-bold">Travel</Text>
-                <Text> </Text>
-              </View>
-            </SafeAreaView>
+            <>
+              <SafeAreaView>
+                <View className="flex-row items-center justify-between p-4 bg-white">
+                  <TouchableOpacity>
+                    <TabBarIcon
+                      name="menu"
+                      color={Colors[colorScheme ?? "light"].tint}
+                    />
+                  </TouchableOpacity>
+                  <Text className="mr-5 text-lg font-bold">Travel</Text>
+                  <TouchableOpacity onPress={toggleModal}>
+                    <View className="flex-row items-center">
+                      <Text className="pr-1">Logout</Text>
+                      <MaterialCommunityIcons
+                        name="logout"
+                        size={24}
+                        color="black"
+                      />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </SafeAreaView>
+              <LogoutModal
+                isVisible={isModalVisible}
+                onLogout={handleLogout}
+                onCancel={toggleModal}
+              />
+            </>
           ),
         }}
       />

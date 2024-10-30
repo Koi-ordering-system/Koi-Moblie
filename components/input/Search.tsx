@@ -3,14 +3,14 @@ import { View, TextInput, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 interface SearchProps {
-  onSearch: (searchTerm: string) => void; 
+  onSearch: (searchTerm: string) => void;
 }
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
-    onSearch(searchTerm); 
+    onSearch(searchTerm);
   };
 
   return (
@@ -22,7 +22,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         onChangeText={setSearchTerm}
       />
       <TouchableOpacity onPress={handleSearch}>
-        <Ionicons name="search" size={24} color="#4A5568" /> 
+        <Ionicons name="search" size={24} color="#4A5568" />
       </TouchableOpacity>
     </View>
   );

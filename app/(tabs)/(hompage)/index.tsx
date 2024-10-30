@@ -11,13 +11,14 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { farmApi } from "@/domains/services/farms/farms.service";
 import { FarmsResponse } from "@/domains/models/farms";
 import { useRouter } from "expo-router";
-import Pagination from "@/components/Pagination";
 import Search from "@/components/input/Search";
+import Rating from "@/components/Rating";
+import Fontisto from "@expo/vector-icons/Fontisto";
+import Entypo from "@expo/vector-icons/Entypo";
 
 const HomePage = () => {
   const [farms, setFarms] = useState<FarmsResponse[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize] = useState(10);
@@ -70,16 +71,8 @@ const HomePage = () => {
           <Text className="mb-2 text-xl font-bold text-gray-900">
             {item.name}
           </Text>
-          <Text className="mb-1 text-gray-700">Owner: {item.owner}</Text>
-          <Text className="mb-1 text-gray-700">Address: {item.address}</Text>
-          <Text className="mb-1 text-gray-700">
-            Description: {item.description}
-          </Text>
-          <Text className="mb-2 text-gray-700">Rating: {item.rating}</Text>
-
           {item.farmImages && item.farmImages.length > 0 && (
             <View className="mt-2">
-              <Text className="mb-1 font-semibold text-gray-800">Images:</Text>
               <FlatList
                 data={item.farmImages}
                 horizontal
@@ -94,6 +87,19 @@ const HomePage = () => {
               />
             </View>
           )}
+          <View className="py-2">
+            <Rating rating={item.rating} />
+          </View>
+
+          <View className="flex-row items-center">
+            <Fontisto name="person" size={20} color="black" />
+            <Text className="text-gray-700 pl-2">{item.owner}</Text>
+          </View>
+
+          <View className="flex-row items-center pt-2">
+            <Entypo name="address" size={20} color="black" />
+            <Text className="text-gray-700 pl-1">{item.address}</Text>
+          </View>
         </View>
       </TouchableOpacity>
     );
@@ -107,12 +113,6 @@ const HomePage = () => {
         renderItem={renderFarmCard}
         keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingBottom: 16 }}
-      />
-
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
       />
     </GestureHandlerRootView>
   );
